@@ -1,0 +1,71 @@
+# Project exclude paths
+/.gradle/
+/build/
+/build/classes/java/main/
+/build/classes/java/test/
+/spring-test-error-note/build/
+/spring-test-error-note/build/classes/java/main/
+/spring-test-error-note/build/classes/java/test/
+# 컴파일된 소스 #
+################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# 패키지 파일 #
+###############
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# 로그와 데이터 파일 #
+#####################
+*.log
+*.sql
+*.sqlite
+*.dat
+
+# OS 생성 파일 #
+################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# 개발 도구 설정 #
+#################
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+
+# 빌드 도구 #
+############
+# Gradle
+build/
+
+# 환경 설정 파일 #
+#################
+.env
+.env.local
+.env.*.local
+
+# 기타 #
+########
+# 암호화 키나 개인 정보를 포함한 파일
+*.pem
+*.key
+secret.js
+# 특정 프로젝트에만 적용되는 파일 또는 디렉토리
+custom_dir/
+custom_file.txt
+
