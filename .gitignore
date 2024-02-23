@@ -58,6 +58,7 @@ build/
 .env
 .env.local
 .env.*.local
+.properties
 
 # 기타 #
 ########
