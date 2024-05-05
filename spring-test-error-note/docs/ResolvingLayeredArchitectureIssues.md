@@ -33,7 +33,7 @@
 
 ### Repository
 - repository도 의존된 다른 계층이 없기 때문에 계층간 의존성을 위해 mocking할 필요가 없다.
-- 근데 사실 jpaRepository는 테스트할 필요가 없지않을까? jpa에서 알아서 테스트하고 있을테니까.
+- 근데 사실 jpaRepository는 테스트할 필요가 없지않을까? jpa와 Hibernate에서 알아서 테스트하고 있을테니까.
 
 ### Service
 - 서비스는 domain, jpaRepository와 의존성이 있다.
@@ -51,7 +51,33 @@
 
 ### Controller
 - 컨트롤러는 인스턴스화는 쉽지만, 의존성이 3개이기 때문에 역시 의존성 역전을 사용한다.
+- 컨트롤러의 역할은 아래와 같이 정말 간단한데, 이러한 부분은 스프링 팀에서 테스트 하고 있을 것이기 때문에 우리가 테스트 할 필요성이 적다.
+  - 1 핸들러가 requestBody를 받아서 / 2 서비스를 호출하고 / 3 응답을 내려준다.
 
-> 의존성 역전으로 controller의 service, repository, domain 의존성 문제 해결하기
+> 의존성 역전으로 controller의 service, repository, domain 의존성 문제 해결하기:
 - Service를 인터페이스로 만들고 Service 구현체를 둔다.
 - 테스트할 땐, Service에 대응되는 Fake나 Mock을 Service 구현체로 두게 하여 Controller를 테스트하기 쉽게 만든다.
+
+
+## 추가 적용 사항 
+
+### 패키지 구조 개선
+- layer로 분류되어있던 패키지 구조에서 도메인이 패키지 제일 바깥으로 나가도록 변경한다.
+  - 어떤 도메인을 다루는 시스템인지 눈에 보인다.
+  - 필요에 따라 MSA로 시스템 확장이 가능하다.
+
+- 패키지 의존성 확인
+  - 순환 참조가 생기지 않도록 의식하며 개발해야 한다.
+
+### 영속성 객체인 jpa 엔티티와 도메인 모델을 분리
+- setter를 없애고 service에 있는 로직들을 가능하면 도메인 / vo 쪽으로 몰아 넣는다.
+- 그리고 도메인 엔티티를 테스트 한다.
+
+### CQRS 원리 적용 (Command and Query Responsibility Segregation)
+- CQRS:
+  - 명령과 질의의 책임 분리
+  - 하나의 메서드는 명령이나 쿼리이어야하며, 두 기능을 모두 가져서는 안된다.
+    - 명령: 상태를 바꾸는 메서드, 리턴값을 가지면 안된다.
+    - 질의: 상태만 물어보는 메서드, 상태를 변경시키지 않는다. 리턴값이 void가 아니라면 객체의 상태를 변경해서는 안된다.
+- 메서드를 명령과 질의로 나누자. (더 넓게는 클래스 까지도)
+- Repository에 CQRS 원리를 적용하여, Reader와 Writer로 구분하고, ReadOnly객체와 Editable 객체로 분리한다.
