@@ -5,3 +5,5 @@ include(
 )
 
 include 'spring-test-error-note-prac'
+include 'spring-test-error-note-prac-refactoring'
+
