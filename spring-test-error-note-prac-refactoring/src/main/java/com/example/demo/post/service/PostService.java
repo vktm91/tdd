@@ -5,7 +5,7 @@ import com.example.demo.post.domain.PostCreate;
 import com.example.demo.post.domain.PostUpdate;
 import com.example.demo.post.infrastructure.PostEntity;
 import com.example.demo.post.infrastructure.PostRepository;
-import com.example.demo.user.domain.UserEntity;
+import com.example.demo.user.infrastructure.UserEntity;
 import com.example.demo.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

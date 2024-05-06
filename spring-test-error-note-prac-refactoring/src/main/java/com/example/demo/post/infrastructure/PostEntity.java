@@ -1,6 +1,6 @@
 package com.example.demo.post.infrastructure;
 
-import com.example.demo.user.domain.UserEntity;
+import com.example.demo.user.infrastructure.UserEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

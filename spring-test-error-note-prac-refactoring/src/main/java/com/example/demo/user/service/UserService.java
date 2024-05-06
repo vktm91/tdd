@@ -1,11 +1,12 @@
 package com.example.demo.user.service;
 
+
 import com.example.demo.common.domain.exception.CertificationCodeNotMatchedException;
 import com.example.demo.common.domain.exception.ResourceNotFoundException;
-import com.example.demo.model.UserStatus;
-import com.example.demo.model.dto.UserCreateDto;
-import com.example.demo.model.dto.UserUpdateDto;
-import com.example.demo.user.domain.UserEntity;
+import com.example.demo.user.domain.UserCreate;
+import com.example.demo.user.infrastructure.UserEntity;
+import com.example.demo.user.domain.UserStatus;
+import com.example.demo.user.domain.UserUpdate;
 import com.example.demo.user.infrastructure.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.mail.SimpleMailMessage;
@@ -34,7 +35,7 @@ public class UserService {
     }
 
     @Transactional
-    public UserEntity create(UserCreateDto userCreateDto) {
+    public UserEntity create(UserCreate userCreateDto) {
         UserEntity userEntity = new UserEntity();
         userEntity.setEmail(userCreateDto.getEmail());
         userEntity.setNickname(userCreateDto.getNickname());
@@ -48,7 +49,7 @@ public class UserService {
     }
 
     @Transactional
-    public UserEntity update(long id, UserUpdateDto userUpdateDto) {
+    public UserEntity update(long id, UserUpdate userUpdateDto) {
         UserEntity userEntity = getById(id);
         userEntity.setNickname(userUpdateDto.getNickname());
         userEntity.setAddress(userUpdateDto.getAddress());
