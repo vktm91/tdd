@@ -1,8 +1,9 @@
-package com.example.demo.service;
+package com.example.demo.post.service;
 
 import com.example.demo.model.dto.PostCreateDto;
 import com.example.demo.model.dto.PostUpdateDto;
 import com.example.demo.repository.PostEntity;
+import com.example.demo.service.PostService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,7 +21,8 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 })
 public class PostServiceTest {
 
-    @Autowired PostService postService;
+    @Autowired
+    PostService postService;
 
     @Test
     void getById_는_존재하는_게시물을_내려준다() {

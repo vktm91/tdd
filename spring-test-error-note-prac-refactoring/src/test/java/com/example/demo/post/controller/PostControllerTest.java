@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.example.demo.post.controller;
 
 import com.example.demo.model.dto.PostUpdateDto;
 import com.fasterxml.jackson.databind.ObjectMapper;

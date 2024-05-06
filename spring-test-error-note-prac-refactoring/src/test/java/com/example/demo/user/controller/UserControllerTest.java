@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.example.demo.user.controller;
 
 import com.example.demo.model.UserStatus;
 import com.example.demo.model.dto.UserUpdateDto;
