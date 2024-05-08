@@ -1,4 +1,4 @@
-package com.example.sample;
+package com.example.demo;
 
 public class Calculator {
     public long calculate(long num1, String operator, long num2) {

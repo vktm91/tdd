@@ -1,5 +1,7 @@
 package com.example.sample;
 
+import com.example.demo.CalculationRequest;
+import com.example.demo.CalculationRequestReader;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
