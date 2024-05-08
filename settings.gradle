@@ -1,9 +1,6 @@
 rootProject.name = 'tdd'
 
-include(
-        "spring-test-error-note"
-)
-
+include 'spring-test-error-note'
 include 'spring-test-error-note-prac'
 include 'spring-test-error-note-prac-refactoring'
 
