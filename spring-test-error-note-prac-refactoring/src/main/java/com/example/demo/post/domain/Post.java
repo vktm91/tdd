@@ -1,7 +1,6 @@
 package com.example.demo.post.domain;
 
 import com.example.demo.user.domain.User;
-import com.example.demo.user.infrastructure.UserEntity;
 import lombok.Builder;
 import lombok.Getter;
 
