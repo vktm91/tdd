@@ -1,7 +1,7 @@
 package com.example.demo.user.controller;
 
 import com.example.demo.user.controller.response.UserResponse;
-import com.example.demo.user.domain.MyProfileResponse;
+import com.example.demo.user.controller.response.MyProfileResponse;
 import com.example.demo.user.domain.User;
 import com.example.demo.user.domain.UserUpdate;
 import com.example.demo.user.service.UserService;
@@ -28,7 +28,7 @@ public class UserController {
     public ResponseEntity<UserResponse> getUserById(@PathVariable long id) {
         return ResponseEntity
             .ok()
-            .body(toResponse(userService.getById(id)));
+            .body(UserResponse.from(userService.getById(id)));
     }
 
     @GetMapping("/{id}/verify")
@@ -50,7 +50,7 @@ public class UserController {
         userService.login(user.getId());
         return ResponseEntity
             .ok()
-            .body(toMyProfileResponse(user));
+            .body(MyProfileResponse.from(user));
     }
 
     @PutMapping("/me")
@@ -64,27 +64,7 @@ public class UserController {
         user = userService.update(user.getId(), userUpdateDto);
         return ResponseEntity
             .ok()
-            .body(toMyProfileResponse(user));
+            .body(MyProfileResponse.from(user));
     }
 
-    public UserResponse toResponse(User user) {
-        UserResponse userResponse = new UserResponse();
-        userResponse.setId(user.getId());
-        userResponse.setEmail(user.getEmail());
-        userResponse.setNickname(user.getNickname());
-        userResponse.setStatus(user.getStatus());
-        userResponse.setLastLoginAt(user.getLastLoginAt());
-        return userResponse;
-    }
-
-    public MyProfileResponse toMyProfileResponse(User user) {
-        MyProfileResponse myProfileResponse = new MyProfileResponse();
-        myProfileResponse.setId(user.getId());
-        myProfileResponse.setEmail(user.getEmail());
-        myProfileResponse.setNickname(user.getNickname());
-        myProfileResponse.setStatus(user.getStatus());
-        myProfileResponse.setAddress(user.getAddress());
-        myProfileResponse.setLastLoginAt(user.getLastLoginAt());
-        return myProfileResponse;
-    }
 }
