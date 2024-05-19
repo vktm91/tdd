@@ -1,9 +1,9 @@
 package com.example.demo.user.controller;
 
 
+import com.example.demo.user.domain.User;
 import com.example.demo.user.domain.UserStatus;
 import com.example.demo.user.domain.UserUpdate;
-import com.example.demo.user.infrastructure.UserEntity;
 import com.example.demo.user.service.port.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
@@ -68,8 +68,8 @@ public class UserControllerTest {
         mockMvc.perform(get("/api/users/2/verify")
                 .queryParam("certificationCode", "aaaa-aaaa-aaaa-bbbb"))
                 .andExpect(status().isFound());
-        UserEntity userEntity = userRepository.findById(2L).get();
-        assertThat(userEntity.getStatus()).isEqualTo(UserStatus.ACTIVE);
+        User user = userRepository.findById(2L).get();
+        assertThat(user.getStatus()).isEqualTo(UserStatus.ACTIVE);
     }
 
     @Test
@@ -100,7 +100,7 @@ public class UserControllerTest {
     @Test
     void 사용자는_내_정보를_수정할_수_있다() throws Exception {
         // given
-        UserUpdate userUpdateDto = UserUpdate.builder()
+        UserUpdate userUpdate = UserUpdate.builder()
                 .nickname("kok202-n")
                 .address("Pangyo")
                 .build();
@@ -109,7 +109,7 @@ public class UserControllerTest {
         mockMvc.perform(put("/api/users/me")
                         .header("EMAIL", "kok202@naver.com")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(userUpdateDto))
+                        .content(objectMapper.writeValueAsString(userUpdate))
                 )
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(1))
