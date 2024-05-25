@@ -5,11 +5,15 @@ import com.example.demo.common.service.port.ClockHolder;
 import com.example.demo.common.service.port.UuidHolder;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.ToString;
+import lombok.extern.slf4j.Slf4j;
 
 import java.time.Clock;
 import java.util.UUID;
 
 @Getter
+@ToString
+@Slf4j
 public class User {
     private final Long id;
     private final String email;
@@ -41,6 +45,7 @@ public class User {
     }
 
     public User update(UserUpdate userUpdate) {
+        log.info("!!!!! user의 userUpdate 전: {}", userUpdate);
         return User.builder()
                 .id(id)
                 .email(email)
