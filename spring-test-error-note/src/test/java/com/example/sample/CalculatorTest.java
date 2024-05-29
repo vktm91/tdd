@@ -1,5 +1,7 @@
 package com.example.sample;
 
+import com.example.demo.Calculator;
+import com.example.demo.InvalidOperatorException;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

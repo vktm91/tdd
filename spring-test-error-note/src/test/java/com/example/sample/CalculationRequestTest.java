@@ -1,5 +1,8 @@
 package com.example.sample;
 
+import com.example.demo.BadRequestException;
+import com.example.demo.CalculationRequest;
+import com.example.demo.InvalidOperatorException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
