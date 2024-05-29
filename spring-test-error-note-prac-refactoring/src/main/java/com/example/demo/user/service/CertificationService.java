@@ -4,6 +4,7 @@ import com.example.demo.user.service.port.MailSender;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+// CertificationService 는 controller 같은 외부 호출이 없으니 굳이 추상화 안 해 도 됨
 @Service
 @RequiredArgsConstructor
 public class CertificationService {
