@@ -15,8 +15,52 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class PostServiceTest {
 
-    @Autowired
-    PostService postService;
+    private PostServiceImpl postService;
+
+    @BeforeEach
+    void init() {
+
+        FakePostRepository fakePostRepository = new FakePostRepository();
+        FakeUserRepository fakeUserRepository = new FakeUserRepository();
+
+        this.postService = PostServiceImpl.builder()
+                .postRepository(fakePostRepository)
+                .userRepository(fakeUserRepository)
+                .clockHolder(new TestClockHolder(1679530673958L))
+                .build();
+
+        User user1 = User.builder()
+                .id(1L)
+                .email("kok202@naver.com")
+                .nickname("kok202")
+                .address("Seoul")
+                .certificationCode("aaaa-aaaa-aaaa-aaaa")
+                .status(UserStatus.ACTIVE)
+                .lastLoginAt(0L)
+                .build();
+
+        User user2 = User.builder()
+                .id(1L)
+                .email("kok303@naver.com")
+                .nickname("kok303")
+                .address("Seoul")
+                .certificationCode("aaaa-aaaa-aaaa-bbbb")
+                .status(UserStatus.PENDING)
+                .lastLoginAt(0L)
+                .build();
+
+        fakeUserRepository.save(user1);
+
+        fakeUserRepository.save(user2);
+
+        fakePostRepository.save(Post.builder()
+                .id(1L)
+                .content("helloworld")
+                .createdAt(1678530673958L)
+                .modifiedAt(0L)
+                .writer(user1)
+                .build());
+    }
 
     @Test
     void getById_는_존재하는_게시물을_내려준다() {
