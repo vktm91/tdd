@@ -37,6 +37,6 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public User save(User user) {
 //        return userJpaRepository.save(user.toEntity());   // 이렇게 할 수도 있지만, 도메인은 인프라 레이어의 정보를 모르는 것이 좋으므로
-        return userJpaRepository.save(UserEntity.fromModel(user)).toModel();   // 이렇게 영속성 객체에서 모델을 받아서 변환한다
+        return userJpaRepository.save(UserEntity.from(user)).toModel();   // 이렇게 영속성 객체에서 모델을 받아서 변환한다
     }
 }
